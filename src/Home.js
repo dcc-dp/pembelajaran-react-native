@@ -5,10 +5,17 @@ import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { BASE_URL } from '../env';
 
 function Home() {
-  const [datas, setDatas] = useState(null);
+  const [datas, setDatas] = useState([]);
   const navigation = useNavigation();
 
-  const fetchUser = async () => {};
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/crud_api/api/users/read.php`,
+      );
+      setDatas(response.data.data);
+    } catch (error) {}
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -18,7 +25,19 @@ function Home() {
     }, []),
   );
 
-  const hapus = async () => {};
+  const hapus = async id => {
+    try {
+      const response = await axios.delete(
+        `${BASE_URL}/crud_api/api/users/delete.php`,
+        {
+          data: {
+            id: id,
+          },
+        },
+      );
+      fetchUser();
+    } catch (error) {}
+  };
 
   return (
     <View style={{ margin: 20 }}>
@@ -42,8 +61,8 @@ function Home() {
               }}
             >
               <View style={{ margin: 10 }}>
-                <Text>NAMA</Text>
-                <Text>EMAIL</Text>
+                <Text>{item.nama}</Text>
+                <Text>{item.email}</Text>
               </View>
               <TouchableOpacity
                 style={{

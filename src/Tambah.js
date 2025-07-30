@@ -11,7 +11,22 @@ function Edit() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSave = async () => {};
+  const handleSave = async () => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/crud_api/api/users/create.php`,
+        {
+          nama: nama,
+          email: email,
+          password: password,
+        },
+      );
+      if (response.data.status === 'success') {
+        Alert.alert('Berhasil');
+        navigation.goBack();
+      }
+    } catch (error) {}
+  };
 
   return (
     <View>
@@ -33,7 +48,7 @@ function Edit() {
         style={{ backgroundColor: 'yellow', margin: 10 }}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={{ margin: 10 }}>
+      <TouchableOpacity style={{ margin: 10 }} onPress={handleSave}>
         <Text>SIMPAN</Text>
       </TouchableOpacity>
     </View>
