@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { BASE_URL } from '../env';
-import LottieView from 'lottie-react-native';
 
 function Home() {
   const [datas, setDatas] = useState([]);
