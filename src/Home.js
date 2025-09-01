@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { BASE_URL } from '../env';
+import LottieView from 'lottie-react-native';
 
 function Home() {
   const [datas, setDatas] = useState([]);
@@ -40,15 +41,58 @@ function Home() {
   };
 
   return (
-    <View style={{ margin: 20 }}>
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Tambah');
+    <View style={{ flex: 1, padding: 0 }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          backgroundColor: '#ffff',
+        }}
+      >
+        <View
+          style={{
+            width: '50%',
+            height: 100,
+            backgroundColor: '#fff',
+            borderBottomRightRadius: 20,
+            borderBottomLeftRadius: 20,
+            marginLeft: 10,
+            marginTop: 10,
           }}
         >
-          <Text>TAMBAH</Text>
-        </TouchableOpacity>
+          <Text style={{ marginTop: 38, fontWeight: 'bold', fontSize: 20 }}>
+            Selamat Datang 
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <View
+          style={{
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            backgroundColor: '#d1d1d1ff',
+            paddingHorizontal: 20,
+            borderTopRightRadius: 20,
+            borderBottomLeftRadius: 20,
+            marginTop: 20,
+            marginLeft: 10,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Tambah');
+            }}
+          >
+            <Text>TAMBAH</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {datas.map((item, index) => {
         return (
