@@ -4,33 +4,14 @@ import { useEffect, useState } from 'react';
 import notifee, { AndroidImportance, TriggerType } from '@notifee/react-native';
 
 //bagian 1
-async function setupNotificationChannel() {
-  await notifee.createChannel({
-    id: 'alarm_channel',
-    name: 'Alarm Notifications',
-    importance: 4,
-    sound: 'default',
-  });
-}
+async function setupNotificationChannel() {}
 const Notification = () => {
-  const [toggle, setToggle] = useState(false); //Menyimpan status ON/OFF alarm
-  const [date, setDate] = useState(new Date()); //Menyimpan waktu alarm yang dipilih user
-  const [showPicker, setShowPicker] = useState(false); //Menentukan apakah tampilan jam ditampilkan di layar
+  useEffect(() => {}, []);
 
-  // bagian 2
-  useEffect(() => {
-    setupNotificationChannel();
-  }, []);
-
-  // bagian 3 mengatur waktu alarm
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-  };
+  const onChange = (event, selectedDate) => {};
 
   // bagian 4
-  const showTimePicker = () => {
-    setShowPicker(true);
-  };
+  const showTimePicker = () => {};
 
   // bagian 5
   const scheduleAlarmNotification = async () => {
@@ -52,27 +33,22 @@ const Notification = () => {
       };
       await notifee.createTriggerNotification(
         {
-          title: 'Waktunya Alarm! ⏰',
-          body: `Alarm berbunyi pada ${date.toLocaleTimeString().slice(0, 5)}`,
+          title: '',
+          body: ``,
           android: {
-            channelId: 'alarm_channel',
-            smallIcon: 'ic_launcher',
+            channelId: '',
+            smallIcon: '',
             pressAction: {
-              id: 'default',
-              launchActivity: 'default',
+              id: '',
+              launchActivity: '',
             },
-            importance: AndroidImportance.HIGH,
+            importance: null,
           },
         },
         trigger,
       );
 
-      Alert.alert(
-        'Alarm Dijadwalkan!',
-        `Alarm akan berbunyi pada ${date
-          .toLocaleTimeString()
-          .slice(0, 5)}. Anda bisa menutup aplikasi ini.`,
-      );
+      Alert.alert('', ``);
     } catch (error) {
       // ERROR HANDLING
       console.error('Error scheduling alarm:', error);
@@ -90,10 +66,7 @@ const Notification = () => {
       await notifee.cancelAllNotifications();
 
       // Konfirmasi ke user
-      Alert.alert(
-        'Berhasil!',
-        'Semua notifikasi dan alarm terjadwal Notifee telah dibatalkan.',
-      );
+      Alert.alert('', '');
     } catch (error) {
       // Error handling
       console.error('Error canceling notifications:', error);
