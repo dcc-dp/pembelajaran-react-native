@@ -3,6 +3,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
 import notifee, { AndroidImportance, TriggerType } from '@notifee/react-native';
 
+//bagian 1
 async function setupNotificationChannel() {
   await notifee.createChannel({
     id: 'alarm_channel',
@@ -24,10 +25,6 @@ const Notification = () => {
   // bagian 3 mengatur waktu alarm
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setDate(currentDate);
-    setShowPicker(false);
-    setToggle(false);
-    notifee.cancelAllNotifications();
   };
 
   // bagian 4
