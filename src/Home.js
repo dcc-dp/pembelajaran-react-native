@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { BASE_URL } from '../env';
-import LottieView from 'lottie-react-native';
 
 function Home() {
   const [datas, setDatas] = useState([]);
@@ -62,15 +61,16 @@ function Home() {
           }}
         >
           <Text style={{ marginTop: 38, fontWeight: 'bold', fontSize: 20 }}>
-            Selamat Datang 
+            Selamat Datang
           </Text>
         </View>
       </View>
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
           alignItems: 'center',
+          gap: 10,
+          margin: 10,
         }}
       >
         <View
@@ -93,6 +93,29 @@ function Home() {
             <Text>TAMBAH</Text>
           </TouchableOpacity>
         </View>
+
+        {/* notification */}
+        <View
+          style={{
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            backgroundColor: '#d1d1d1ff',
+            paddingHorizontal: 20,
+            borderTopRightRadius: 20,
+            borderBottomLeftRadius: 20,
+            marginTop: 20,
+            marginLeft: 10,
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Notification');
+            }}
+          >
+            <Text>NOTIFIKASI</Text>
+          </TouchableOpacity>
+        </View>
+        {/* end notification */}
       </View>
       {datas.map((item, index) => {
         return (
